@@ -1,4 +1,6 @@
 using HotelListingAPI.Data.Configurations;
+using HotelListingAPI.Data.Interfaces;
+using HotelListingAPI.Data.Repos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +53,13 @@ namespace HotelListingAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelListingAPI", Version = "v1" });
             });
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(
+                op => op.SerializerSettings
+                        .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+
         } 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,6 +82,11 @@ namespace HotelListingAPI
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{controller = Home}/{action = Index}/{id?}");
+
+
                 endpoints.MapControllers();
             });
         }
