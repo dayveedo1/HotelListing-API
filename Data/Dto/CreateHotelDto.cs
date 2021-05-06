@@ -8,7 +8,8 @@ namespace HotelListingAPI.Data.Dto
 {
     public class CreateHotelDto
     {
-        
+        //[Required]
+        public int HotelId { get; set; }
         [Required]
         [StringLength(maximumLength: 50, ErrorMessage =  "Hotel Name too long")]
         public string Name { get; set; }
@@ -22,9 +23,14 @@ namespace HotelListingAPI.Data.Dto
         public int CountryId { get; set; }
     }
 
+    public class UpdateHotelDto : CreateHotelDto
+    {
+
+    }
+
     public class HotelDto : CreateHotelDto
     {
-        public int Id { get; set; }
-        public CountryDto Country { get; set; }
+        //public int Id { get; set; }
+        //public CountryDto Country { get; set; }
     }
 }

@@ -1,9 +1,11 @@
 using HotelListingAPI.Data.Configurations;
 using HotelListingAPI.Data.Interfaces;
 using HotelListingAPI.Data.Repos;
+using HotelListingAPI.Data.Security;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,9 +36,13 @@ namespace HotelListingAPI
         {
 
             services.AddDbContext<HotelDbContext>(options => 
-                options.UseSqlServer(Configuration.GetConnectionString("sqlConection"))
+                options.UseSqlServer(Configuration.GetConnectionString("HotelAPI"))
             );
-           
+
+            services.AddAuthentication();
+            services.ConfigureIdentity();
+            services.ConfigureJwt(Configuration);
+            
 
             services.AddCors(cs => {
                 cs.AddPolicy(AllowOrigins,
@@ -50,7 +56,8 @@ namespace HotelListingAPI
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelListingAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo 
+                { Title = "HotelListingAPI", Version = "v1" });
             });
 
             services.AddControllers().AddNewtonsoftJson(
@@ -59,6 +66,7 @@ namespace HotelListingAPI
                 );
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IAuthManager, AuthManager>();
 
         } 
 
@@ -77,7 +85,7 @@ namespace HotelListingAPI
             app.UseCors("AllowOrigins");
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
