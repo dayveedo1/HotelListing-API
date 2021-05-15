@@ -1,3 +1,4 @@
+using AspNetCoreRateLimit;
 using HotelListingAPI.Data.Configurations;
 using HotelListingAPI.Data.Interfaces;
 using HotelListingAPI.Data.Repos;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using Serilog.Core;
 using System;
 using System.Collections.Generic;
@@ -42,7 +44,14 @@ namespace HotelListingAPI
             services.AddAuthentication();
             services.ConfigureIdentity();
             services.ConfigureJwt(Configuration);
-            
+            services.ConfigureVersioning();
+            services.ConfigureHttpCacheHeaders();
+            services.ConfigureRateLimiting();
+            services.AddHttpContextAccessor();
+
+            services.AddMemoryCache();
+
+            //services.AddResponseCaching();
 
             services.AddCors(cs => {
                 cs.AddPolicy(AllowOrigins,
@@ -60,9 +69,14 @@ namespace HotelListingAPI
                 { Title = "HotelListingAPI", Version = "v1" });
             });
 
-            services.AddControllers().AddNewtonsoftJson(
+            services.AddControllers(config => {
+                config.CacheProfiles.Add("120SecondsDuration", new CacheProfile
+                {
+                    Duration = 120
+                });
+            }).AddNewtonsoftJson(
                 op => op.SerializerSettings
-                        .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                        .ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                 );
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
@@ -80,6 +94,7 @@ namespace HotelListingAPI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HotelListingAPI v1"));
             }
 
+            app.ConfigureExceptionHandler();
             app.UseHttpsRedirection();
 
             app.UseCors("AllowOrigins");
@@ -87,6 +102,10 @@ namespace HotelListingAPI
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseResponseCaching();
+            app.UseHttpCacheHeaders();
+            app.UseIpRateLimiting();
 
             app.UseEndpoints(endpoints =>
             {

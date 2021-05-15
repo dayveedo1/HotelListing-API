@@ -2,6 +2,8 @@
 using HotelListingAPI.Data;
 using HotelListingAPI.Data.Dto;
 using HotelListingAPI.Data.Interfaces;
+using HotelListingAPI.Data.Models;
+using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,13 +31,14 @@ namespace HotelListingAPI.Controllers
         }
 
         [HttpGet]
+        //[ResponseCache(CacheProfileName = "120SecondsDuration")]
         //[ProducesResponseType(StatusCodes.Status200OK)]
         //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAllCountries()
+        public async Task<IActionResult> GetAllCountries([FromQuery] RequestParams requestParams)
         {
             try
             {
-                var countries = await unitOfWork.Countries.GetAll();
+                var countries = await unitOfWork.Countries.GetAll(requestParams);
                 var result = mapper.Map<IList<CountryDto>>(countries);
                 return Ok(result);
             }
@@ -47,6 +50,9 @@ namespace HotelListingAPI.Controllers
         }
 
         [HttpGet("{id:int}")]
+        //[ResponseCache(CacheProfileName = "120SecondsDuration")]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 60)]
+        [HttpCacheValidation(MustRevalidate = true)]
         //[ProducesResponseType(StatusCodes.Status200OK)]
         //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
         //[ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -56,6 +62,11 @@ namespace HotelListingAPI.Controllers
             {
                 var country = await unitOfWork.Countries.Get(q => q.CountryId == id, 
                                 new List<string> { "Hotels" });
+                if (country == null)
+                {
+                    logger.LogError($"Something went wrong in {nameof(GetCountryById)}");
+                    return StatusCode(StatusCodes.Status404NotFound);
+                }
                 var result = mapper.Map<CountryDto>(country);
                 return Ok(result);
             }
