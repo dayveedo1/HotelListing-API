@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Serilog.Core;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,9 +91,17 @@ namespace HotelListingAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HotelListingAPI v1"));
+               
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                //c.DefaultModelRendering(ModelRendering.Example);
+                //c.SwaggerEndpoint("/swagger/v1/swagger.json", "HotelListingAPI");
+                //c.RoutePrefix = string.Empty;
+                string swaggerJsonPath = string.IsNullOrWhiteSpace(c.RoutePrefix) ? "." : "..";
+                c.SwaggerEndpoint($"{swaggerJsonPath}/swagger/v1/swagger.json", "HotelListingAPI");
+            });
 
             app.ConfigureExceptionHandler();
             app.UseHttpsRedirection();
@@ -109,9 +118,9 @@ namespace HotelListingAPI
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapControllerRoute(
-                //    name: "default",
-                //    pattern: "{controller = Home}/{action = Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 
                 endpoints.MapControllers();

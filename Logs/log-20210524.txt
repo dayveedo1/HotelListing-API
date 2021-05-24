@@ -1,0 +1,68 @@
+2021-05-24 11:42:13, 429 +01:00 [INF] Application is starting
+2021-05-24 11:42:15, 124 +01:00 [INF] User profile is available. Using 'C:\Users\A\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-05-24 11:42:16, 065 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-05-24 11:42:16, 065 +01:00 [INF] Hosting environment: Development
+2021-05-24 11:42:16, 065 +01:00 [INF] Content root path: C:\Users\A\Documents\csharp\HotelListingAPI
+2021-05-24 11:42:16, 172 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44348/index.html - -
+2021-05-24 11:42:16, 288 +01:00 [INF] No cached response available for this request.
+2021-05-24 11:42:16, 295 +01:00 [INF] Checking for conditional GET/HEAD.
+2021-05-24 11:42:16, 298 +01:00 [INF] Not valid - no If-None-Match or If-Modified-Since headers.
+2021-05-24 11:42:16, 298 +01:00 [INF] Don't generate 304 - Not Modified.  Continue.
+2021-05-24 11:42:16, 300 +01:00 [INF] Checking for conditional PUT/PATCH.
+2021-05-24 11:42:16, 300 +01:00 [INF] Not valid - method isn't PUT or PATCH.
+2021-05-24 11:42:16, 300 +01:00 [INF] Don't generate 412 - Precondition Failed.  Continue.
+2021-05-24 11:42:16, 355 +01:00 [INF] Generating expiration headers.
+2021-05-24 11:42:16, 358 +01:00 [INF] Expiration headers generated. Expires: Mon, 24 May 2021 10:43:16 GMT. Cache-Control: private,max-age=60,must-revalidate.
+2021-05-24 11:42:16, 360 +01:00 [INF] Not generating Validation headers as the response status code does not indicate succes.
+2021-05-24 11:42:16, 361 +01:00 [INF] Generating Vary header.
+2021-05-24 11:42:16, 361 +01:00 [INF] Vary header generated: Accept, Accept-Language, Accept-Encoding.
+2021-05-24 11:42:16, 366 +01:00 [INF] The response could not be cached for this request.
+2021-05-24 11:42:16, 384 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44348/index.html - - - 404 - - 219.8607ms
+2021-05-24 11:42:26, 048 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44348/index.html - -
+2021-05-24 11:42:26, 049 +01:00 [INF] No cached response available for this request.
+2021-05-24 11:42:26, 049 +01:00 [INF] Checking for conditional GET/HEAD.
+2021-05-24 11:42:26, 050 +01:00 [INF] Not valid - no If-None-Match or If-Modified-Since headers.
+2021-05-24 11:42:26, 050 +01:00 [INF] Don't generate 304 - Not Modified.  Continue.
+2021-05-24 11:42:26, 050 +01:00 [INF] Checking for conditional PUT/PATCH.
+2021-05-24 11:42:26, 050 +01:00 [INF] Not valid - method isn't PUT or PATCH.
+2021-05-24 11:42:26, 050 +01:00 [INF] Don't generate 412 - Precondition Failed.  Continue.
+2021-05-24 11:42:26, 052 +01:00 [INF] Generating expiration headers.
+2021-05-24 11:42:26, 052 +01:00 [INF] Expiration headers generated. Expires: Mon, 24 May 2021 10:43:26 GMT. Cache-Control: private,max-age=60,must-revalidate.
+2021-05-24 11:42:26, 052 +01:00 [INF] Not generating Validation headers as the response status code does not indicate succes.
+2021-05-24 11:42:26, 052 +01:00 [INF] Generating Vary header.
+2021-05-24 11:42:26, 052 +01:00 [INF] Vary header generated: Accept, Accept-Language, Accept-Encoding.
+2021-05-24 11:42:26, 053 +01:00 [INF] The response could not be cached for this request.
+2021-05-24 11:42:26, 054 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44348/index.html - - - 404 - - 5.7938ms
+2021-05-24 11:42:32, 157 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44348/swagger/index.html - -
+2021-05-24 11:42:32, 386 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44348/swagger/index.html - - - 200 - text/html;charset=utf-8 228.7575ms
+2021-05-24 11:42:32, 445 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44348/swagger/swagger-ui-bundle.js - -
+2021-05-24 11:42:32, 446 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44348/swagger/swagger-ui.css - -
+2021-05-24 11:42:32, 446 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44348/swagger/swagger-ui-standalone-preset.js - -
+2021-05-24 11:42:32, 538 +01:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2021-05-24 11:42:32, 538 +01:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2021-05-24 11:42:32, 543 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44348/swagger/swagger-ui.css - - - 200 143410 text/css 97.1142ms
+2021-05-24 11:42:32, 551 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44348/swagger/swagger-ui-standalone-preset.js - - - 200 336841 application/javascript 105.8069ms
+2021-05-24 11:42:32, 567 +01:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2021-05-24 11:42:32, 599 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44348/swagger/swagger-ui-bundle.js - - - 200 1097461 application/javascript 153.9818ms
+2021-05-24 11:42:32, 916 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44348/swagger/v1/swagger.json - -
+2021-05-24 11:42:33, 084 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44348/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 168.1884ms
+2021-05-24 11:42:53, 689 +01:00 [INF] Application is starting
+2021-05-24 11:42:54, 057 +01:00 [INF] User profile is available. Using 'C:\Users\A\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-05-24 11:42:54, 291 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-05-24 11:42:54, 291 +01:00 [INF] Hosting environment: Development
+2021-05-24 11:42:54, 291 +01:00 [INF] Content root path: C:\Users\A\Documents\csharp\HotelListingAPI
+2021-05-24 11:42:54, 319 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44348/swagger - -
+2021-05-24 11:42:54, 369 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44348/swagger/index.html - -
+2021-05-24 11:42:54, 420 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44348/swagger - - - 301 - - 104.7354ms
+2021-05-24 11:42:54, 465 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44348/swagger/index.html - - - 200 - text/html;charset=utf-8 95.8605ms
+2021-05-24 11:42:54, 955 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44348/swagger/v1/swagger.json - -
+2021-05-24 11:42:55, 142 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44348/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 187.0788ms
+2021-05-24 11:43:59, 330 +01:00 [INF] Application is starting
+2021-05-24 11:43:59, 719 +01:00 [INF] User profile is available. Using 'C:\Users\A\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-05-24 11:43:59, 996 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-05-24 11:43:59, 996 +01:00 [INF] Hosting environment: Development
+2021-05-24 11:43:59, 997 +01:00 [INF] Content root path: C:\Users\A\Documents\csharp\HotelListingAPI
+2021-05-24 11:44:00, 035 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44348/swagger/index.html - -
+2021-05-24 11:44:00, 177 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44348/swagger/index.html - - - 200 - text/html;charset=utf-8 144.1421ms
+2021-05-24 11:44:00, 449 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44348/swagger/v1/swagger.json - -
+2021-05-24 11:44:00, 618 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44348/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 169.4101ms
